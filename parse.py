@@ -71,13 +71,12 @@ def verifyP(programa):
         if programa[i]=='P' and programa[i+5]==')':
             if programa[i+1]!='(' or programa[i+2]!='#' or programa[i+3]!=',' or programa[i+4] not in directions or programa[i+4] not in orientations or programa[i+5]!=')':
                 correct=False
-        if programa[i]=='P' and programa[i+2]==')':
+        if programa[i]=='P' and programa[i+3]==')':
             if programa[i+1]!='(' or programa[i+2]!='#' or programa[i+3]!=')':
                 correct= False
         
         
     return correct
-            
             
 
 def verifyS(programa):
@@ -91,7 +90,7 @@ def verifyS(programa):
 def verifyJ(programa):
     correct=True
     for i in range(0,len(programa)-1):
-        if programa[i]=='J' and programa[i+5]==')':
+        if programa[i]=='J':
             if programa[i+1]!='(' or programa[i+2]!='#' or programa[i+3]!=',' or programa[i+4]!='#' or programa[i+5]!=')':
                 correct=False
     return correct
@@ -100,15 +99,15 @@ def verifyN(programa):
     correct=True
     for i in range(0,len(programa)-1):
         if programa[i]=='N':
-            if programa[i+1]!='(' or programa[i+2]!=')':
+            if programa[i+1]!='(' or programa[i+3]!=')':
                 correct= False
     return correct
 
 def verifyT(programa):
     correct=True
     for i in range(0,len(programa)-1):
-        if programa[i]=='T' and programa[i+3]==')':
-            if programa[i+1]!='(' or programa[i+2] not in directions:
+        if programa[i]=='T':
+            if programa[i+1]!='(' or programa[i+2] not in directions or programa[i+3]!=')':
                 correct=False
     return correct
 
@@ -116,7 +115,7 @@ def verifyH(programa):
     
     correct=True
     for i in range(0,len(programa)-1):
-        if programa[i]=='H' and programa[i+3]==')':
-            if programa[i+1]!='(' or programa[i+2] not in orientations:
+        if programa[i]=='H':
+            if programa[i+1]!='(' or programa[i+2] not in orientations or programa[i+3]!=')':
                 correct=False
     return correct
