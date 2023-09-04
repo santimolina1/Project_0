@@ -7,10 +7,10 @@ commands4={'nop'}
 commands5={'turn'}
 commands6={'turnto'}
 commands7={'defVar'}
-values=[1,2,3,4,5,6,7,8,9,10,11,12,13,14]
 directions={'north', 'east', 'west','south'}
 symbols=set([":", ",", ";", "[", "]"])
 orientations={'right','left','front','back'}
+caracteresEspeciales=['S', 'P','J','N','T','H','B','#',';','}','{','(',')',',',':']
 
 variables={}
 functions={}
@@ -34,17 +34,89 @@ def changeCommand(programa):
     for command in nuevoPrograma: 
         if command in commands1:
             command='S'
-        if command in commands2:
+        elif command in commands2:
             command='P'
-        if command in commands3:
+        elif command in commands3:
             command='J'
-        if command in commands4:
+        elif command in commands4:
             command='N'
-        if command in commands5:
+        elif command in commands5:
             command='T'
-        if command in commands6:
+        elif command in commands6:
             command='H'
-        if command in commands7:
+        elif command in commands7:
             command='B'
+        elif command.isnumeric():
+            command = '#'
         newCommands.append(command)
     return newCommands
+
+def verifyVariableDefinition(programa):
+    programa1=changeCommand(programa)
+    correct=True
+    
+    for i in range(0,len(programa1)-1):
+        if programa1[i]=='B':
+            
+            if programa1[i+1] in caracteresEspeciales and programa[i+2]!='#':
+                correct=False
+                
+    return correct
+
+programa=changeCommand(programa)
+
+def verifyP(programa):
+    correct=True
+    for i in range(0,len(programa)-1):
+        if programa[i]=='P' and programa[i+5]==')':
+            if programa[i+1]!='(' or programa[i+2]!='#' or programa[i+3]!=',' or programa[i+4] not in directions or programa[i+4] not in orientations or programa[i+5]!=')':
+                correct=False
+        if programa[i]=='P' and programa[i+2]==')':
+            if programa[i+1]!='(' or programa[i+2]!='#' or programa[i+3]!=')':
+                correct= False
+        
+        
+    return correct
+            
+            
+
+def verifyS(programa):
+    correct=True
+    for i in range(0,len(programa)-1):
+        if programa[i]=='S':
+            if programa[i+1]!='(' or programa[i+2]!='#' or programa[i+3]!=')':
+                correct= False
+    return correct
+
+def verifyJ(programa):
+    correct=True
+    for i in range(0,len(programa)-1):
+        if programa[i]=='J' and programa[i+5]==')':
+            if programa[i+1]!='(' or programa[i+2]!='#' or programa[i+3]!=',' or programa[i+4]!='#' or programa[i+5]!=')':
+                correct=False
+    return correct
+
+def verifyN(programa):
+    correct=True
+    for i in range(0,len(programa)-1):
+        if programa[i]=='N':
+            if programa[i+1]!='(' or programa[i+2]!=')':
+                correct= False
+    return correct
+
+def verifyT(programa):
+    correct=True
+    for i in range(0,len(programa)-1):
+        if programa[i]=='T' and programa[i+3]==')':
+            if programa[i+1]!='(' or programa[i+2] not in directions:
+                correct=False
+    return correct
+
+def verifyH(programa):
+    
+    correct=True
+    for i in range(0,len(programa)-1):
+        if programa[i]=='H' and programa[i+3]==')':
+            if programa[i+1]!='(' or programa[i+2] not in orientations:
+                correct=False
+    return correct
