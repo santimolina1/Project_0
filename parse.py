@@ -24,3 +24,25 @@ def direccionValida(comando):
 
 def funcionDefinida(nombre):
     return nombre in functions
+
+
+def verificarSyntaxis(programa):
+    
+    programaConvertido=convertirPrograma(programa)
+    
+    insideFunction=False 
+    for comando in programaConvertido:
+        if not comandoValido(comando):
+            print(f"Syntax Error: Invalid command: {comando}")
+            return False
+        
+    for comando in programaConvertido:
+        if not direccionValida(comando):
+            print(f"Syntax Error: Invalid command: {comando}")
+            return False
+    for nombre in programaConvertido:
+        if not funcionDefinida(nombre):
+            print(f"Syntax Error: Invalid command: {comando}")
+            return False
+        
+    return True
