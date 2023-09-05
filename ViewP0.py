@@ -7,18 +7,16 @@ Created on Sun Sep  3 12:08:32 2023
 """
 
 import ControllerP0 as c
+from pathlib import Path
 
-
-
-
-def verifyTodo():
-    programa = str(print("Enter the robot program: "))
-    syntaxis=c.verifyTodo(programa)
-    
-    if syntaxis==True:
-        print('Syntaxis is correct')
-    if syntaxis==False:
-        print('Syntaxis has an error')
-     
-            
-verifyTodo()
+print("Bienvenido, programa de verificación:")
+print('Asegúrese de que el archivo esté en la carpeta.')
+archivo = input("Por favor, introduzca el archivo.txt con el código a verificar: ")
+p = Path(__file__).with_name(archivo)
+print("Verificando su código...")
+res = ""
+if c.verifyTodo(p):
+    res = 'Su código es correcto.'
+else:
+    res = 'Su código tiene errores.'
+print(res)
