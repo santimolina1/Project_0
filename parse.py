@@ -30,9 +30,8 @@ def convertirPrograma(programa):
 
 
 def changeCommand(programa):
-    nuevoPrograma=convertirPrograma(programa)
     newCommands=[]
-    for command in nuevoPrograma: 
+    for command in programa: 
         if command in commands1:
             command='S'
         elif command in commands2:
@@ -228,30 +227,30 @@ def verifyF(programa,i):
 
 def verifyTodo(programa):
     programa1=convertirPrograma(programa)
-    programa=changeCommand(programa1)
-    for i in range(0, len(programa) - 1):
+    programa2=changeCommand(programa1)
+    for i in range(0, len(programa2) - 1):
         # Verificamos las funciones
-        if programa[i] == 'S' and not verifyS(programa, i):
+        if programa2[i] == 'S' and not verifyS(programa2, i):
             return False
-        if programa[i] == 'P' and not verifyP(programa, i):
+        if programa2[i] == 'P' and not verifyP(programa2, i):
             return False
-        if programa[i] == 'J' and not verifyJ(programa, i):
+        if programa2[i] == 'J' and not verifyJ(programa2, i):
             return False
-        if programa[i] == 'N' and not verifyN(programa, i):
+        if programa2[i] == 'N' and not verifyN(programa2, i):
             return False
-        if programa[i] == 'T' and not verifyT(programa, i):
+        if programa2[i] == 'T' and not verifyT(programa2, i):
             return False
-        if programa[i] == 'H' and not verifyH(programa, i):
+        if programa2[i] == 'H' and not verifyH(programa2, i):
             return False
 
         # Verificamos las condicionales
-        if programa[i] == 'I' and not verifyI(programa, i):
+        if programa2[i] == 'I' and not verifyI(programa2, i):
             return False
-        if programa[i] == 'O' and not verifyO(programa,i):
+        if programa2[i] == 'O' and not verifyO(programa2,i):
             return False
-        if programa[i] == 'W' and not verifyW(programa,i) :
+        if programa2[i] == 'W' and not verifyW(programa2,i) :
             return False
-        if programa[i]=='F' and not verifyF(programa,i):
+        if programa2[i]=='F' and not verifyF(programa2,i):
             return False
 
     return True
@@ -289,4 +288,3 @@ def posicionFinalTotal(programa,i):
         return posicionFinalH(programa,i)
     else:
         return False
-
