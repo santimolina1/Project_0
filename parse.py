@@ -209,32 +209,18 @@ def verifyO(programa,i):
 
 #Revisa si los corchtes estan bien 
 def verifyF(programa,i):
-
-    for i in range(0,len(programa)):
-        contadorA=0
-        contadorC=0
-        if programa[i]=='{':
-            contadorA+=1
-        if programa[i]=='}':
-            contadorC+=1
-        
-    if contadorA!=contadorC:
+    if programa[i+1] not in procesos and programa[i+2]!="(":
         return False
-        
-    if contadorA==contadorC:
-        return True
-
-        
-            
-
-    
-
+    return True
 
 
 def verifyTodo(programa):
     programa1=convertirPrograma(programa)
     programa2=changeCommand(programa1)
+    cont1=0
+    cont2=0
     for i in range(0, len(programa2) - 1):
+        print(programa2[i])
         # Verificamos las funciones
         if programa2[i] == 'S' and not verifyS(programa2, i):
             return False
@@ -259,6 +245,11 @@ def verifyTodo(programa):
         if programa2[i]=='F' and not verifyF(programa2,i):
             return False
 
+        #Verificamos los corchetes
+        if programa2[i]=="{":
+            cont1+=1
+        if programa2[i]=="}":
+            cont2+=1
     return True
 
 

@@ -22,4 +22,3 @@ defProc safeWalk ( n )
 {
 if can(walk( n ) ) { walk( n ) } else { nop () } 
 } 
-

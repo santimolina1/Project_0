@@ -15,7 +15,7 @@ archivo = input("Por favor, introduzca el archivo.txt con el código a verificar
 p = Path(__file__).with_name(archivo)
 print("Verificando su código...")
 res = ""
-if c.verifyTodo(p):
+if c.verifyTodo(p) is True:
     res = 'Su código es correcto.'
 else:
     res = 'Su código tiene errores.'
