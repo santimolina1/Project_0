@@ -267,11 +267,15 @@ def verifyTodo(programa):
             return False
         if programa2[i]=='R' and not verifyR(programa2,i):   
             return False
-        #Verificamos los corchetes
+        #Verificamos la cantidad de corchetes
         if programa2[i]=="{":
             cont1+=1
         if programa2[i]=="}":
             cont2+=1
+    #Verificamos si la cantidad de corchetes es la misma        
+    if cont1!=cont2:
+        return False        
+    
     return True
 
 
