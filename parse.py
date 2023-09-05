@@ -148,14 +148,17 @@ def verifyO(programa,i):
 def verifyI(programa,i):
     
     if programa[i+1]not in condiciones and programa[i+2]!="(" :
+        print("1")
         return False
     
     posicionI=i+3
     posicionF=posicionFinalTotal(programa,posicionI)
     if posicionF==False:
+        
         return False
     
     if programa[posicionF]!=")" and programa[posicionF+1]!="{" and programa[posicionF+2] not in procesos :
+        
         return False
     
     posicionI1=posicionF+2
@@ -164,12 +167,14 @@ def verifyI(programa,i):
         posicionI1=posicionF1+1
         posicionF1=posicionFinalTotal(programa,posicionI1)
         if posicionF1==False:
+            
             return False
     if programa[posicionF1]!="}" and programa[posicionF1+1]!="else" and programa[posicionF1+2]=="{" and programa[posicionF1+3] not in procesos:
+        
         return False
     
-    posicionF2=posicionF1+3
-    posicionI2=posicionFinalTotal(programa,posicionF2)
+    posicionI2=posicionF1+3
+    posicionF2=posicionFinalTotal(programa,posicionI2)
     while programa[posicionI2]==";":
         posicionI2=posicionF2+1
         posicionF2=posicionFinalTotal(programa,posicionI2)
