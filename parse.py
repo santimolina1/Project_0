@@ -7,6 +7,7 @@ commands4={'nop'}
 commands5={'turn'}
 commands6={'turnto'}
 commands7={'defVar'}
+commands8={'defProc'}
 directions={'north', 'east', 'west','south'}
 symbols=set([":", ",", ";", "[", "]"])
 orientations={'right','left','front','back'}
@@ -46,6 +47,8 @@ def changeCommand(programa):
             command='H'
         elif command in commands7:
             command='B'
+        elif command in commands8:
+            command='F'
         elif command.isnumeric():
             command = '#'
         elif command=="if":
@@ -59,19 +62,12 @@ def changeCommand(programa):
         newCommands.append(command)
     return newCommands
 
-def verifyVariableDefinition(programa):
-    programa1=changeCommand(programa)
+def verifyVariableDefinition(programa,i):
     correct=True
-    
-    for i in range(0,len(programa1)-1):
-        if programa1[i]=='B':
-            
-            if programa1[i+1] in caracteresEspeciales and programa[i+2]!='#':
-                correct=False
+    if programa[i+1] in caracteresEspeciales and programa[i+2]!='#':
+        correct=False
                 
     return correct
-
-programa=changeCommand(programa)
 
 def verifyP(programa,i):
     correct=True
@@ -205,11 +201,34 @@ def verifyO(programa,i):
         return False
     return True
 
+
+#Revisa si los corchtes estan bien 
+def verifyF(programa,i):
+
+    for i in range(0,len(programa)):
+        contadorA=0
+        contadorC=0
+        if programa[i]=='{':
+            contadorA+=1
+        if programa[i]=='}':
+            contadorC+=1
+        
+    if contadorA!=contadorC:
+        return False
+        
+    if contadorA==contadorC:
+        return True
+
+        
+            
+
     
 
 
 
 def verifyTodo(programa):
+    programa1=convertirPrograma(programa)
+    programa=changeCommand(programa1)
     for i in range(0, len(programa) - 1):
         # Verificamos las funciones
         if programa[i] == 'S' and not verifyS(programa, i):
@@ -232,8 +251,12 @@ def verifyTodo(programa):
             return False
         if programa[i] == 'W' and not verifyW(programa,i) :
             return False
+        if programa[i]=='F' and not verifyF(programa,i):
+            return False
 
     return True
+
+
 
 def posicionFinalS(programa,i):
     return i+4
@@ -266,3 +289,4 @@ def posicionFinalTotal(programa,i):
         return posicionFinalH(programa,i)
     else:
         return False
+
