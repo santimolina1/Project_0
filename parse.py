@@ -20,11 +20,17 @@ programa=input()
 condiciones={"can","facing","not"}
 
 
-def convertirPrograma(programa):
-    programa = programa.replace('\t', ' ').replace('\n', ' ').replace('(',' ( ').replace(')',' ) ').replace(',',' , ').replace('{',' { ').replace('}',' } ').replace(';',' ; ')
-    comandos = programa.split(' ')
-    comandos2 = [elemento for elemento in comandos if elemento != '']
-    return comandos2
+def convertirPrograma(archivo):
+    try:
+        with open(archivo, "r", encoding="utf-8") as file:
+            linea = file.read()
+            linea = linea.replace('\t', ' ').replace('\n', ' ').replace('(',' ( ').replace(')',' ) ').replace(',',' , ').replace('{',' { ').replace('}',' } ').replace(';',' ; ')
+            comandos = linea.split()
+            comandos2 = [elemento for elemento in comandos if elemento != '']
+            return comandos2
+    except FileNotFoundError:
+        print(f"El archivo '{archivo}' no fue encontrado.")
+        return []
 
 
 
