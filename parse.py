@@ -128,7 +128,23 @@ def verifyH(programa,i):
     if programa[i+1]!="O" and programa[i+2] not in orientations and programa[i+3]!=')':
         correct=False
     return correct
+#Verifica las condiciones
+def verifyO(programa,i):
+    
+    
+    if programa[i+1]!='(' and programa[i+2]not in procesos  :
+        return False
+    
+    posicionI=i+2
+    posicionF=posicionFinalTotal(programa,posicionI)
+    if posicionF==False:
+        return False
+    if programa[posicionF]!=")" :
+        return False
+    return True
 
+
+#Verifica las condicionales
 def verifyI(programa,i):
     
     if programa[i+1]not in condiciones and programa[i+2]!="(" :
@@ -191,7 +207,7 @@ def verifyW(programa,i):
     return True
     
    
-def verifyO(programa,i):
+def verifyR(programa,i):
     if programa[i+1] !="#" and programa[i+2]!="times" and programa[i+3]!="{" and programa[i+4] not in procesos:
         return False
     
@@ -207,7 +223,7 @@ def verifyO(programa,i):
     return True
 
 
-#Revisa si los corchtes estan bien 
+#verdifica DefProc
 def verifyF(programa,i):
     if programa[i+1] not in procesos and programa[i+2]!="(":
         return False
@@ -244,7 +260,8 @@ def verifyTodo(programa):
             return False
         if programa2[i]=='F' and not verifyF(programa2,i):
             return False
-
+        if programa2[i]=='R' and not verifyR(programa2,i):   
+            return False
         #Verificamos los corchetes
         if programa2[i]=="{":
             cont1+=1
