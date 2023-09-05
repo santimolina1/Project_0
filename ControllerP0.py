@@ -8,7 +8,7 @@ Created on Tue Sep  5 16:13:27 2023
 
 
 
-import ModelP0 as m
+import parse as m
 
 
 def verifyTodo(programa):
