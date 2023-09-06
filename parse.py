@@ -1,5 +1,8 @@
 import sys
 
+#Santiago Molina-202112137
+#SofiaEscobar-202021047
+
 commands1={'drop','get','grab','letGo'}
 commands2={'leap','walk'}
 commands3={'jump'}
