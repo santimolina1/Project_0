@@ -244,7 +244,7 @@ def verifyTodo(programa):
     cont1=0
     cont2=0
     for i in range(0, len(programa2) - 1):
-        print(programa2[i])
+        #print(programa2[i])
         # Verificamos las funciones
         if programa2[i] == 'S' and not verifyS(programa2, i):
             return False
